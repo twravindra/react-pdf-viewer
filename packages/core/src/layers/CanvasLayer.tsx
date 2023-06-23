@@ -16,7 +16,7 @@ import { roundToDivide } from '../utils/roundToDivide';
 
 // The mobile browsers have the limit value for maximum canvas size
 // The values vary but here we set a maximum value of 16 mega-pixels
-const MAX_CANVAS_SIZE = 4096 * 4096;
+const MAX_CANVAS_SIZE = 2000 * 2000;
 
 export const CanvasLayer: React.FC<{
     canvasLayerRef: React.MutableRefObject<HTMLCanvasElement>;
@@ -61,9 +61,11 @@ export const CanvasLayer: React.FC<{
 
         // Calculate the maximum scale
         const maxScale = Math.sqrt(MAX_CANVAS_SIZE / (viewport.width * viewport.height));
+        console.log("maxScale", maxScale)
 
         // Scale by CSS to avoid the crash
         const shouldScaleByCSS = outputScale > maxScale;
+        console.log("shouldScaleByCSS", shouldScaleByCSS)
         shouldScaleByCSS ? (canvasEle.style.transform = `scale(1, 1)`) : canvasEle.style.removeProperty('transform');
 
         const possibleScale = Math.min(maxScale, outputScale);
@@ -112,6 +114,8 @@ export const CanvasLayer: React.FC<{
             if (canvasEle) {
                 canvasEle.width = 0;
                 canvasEle.height = 0;
+                console.log('memory cleared')
+                canvasContext.clearRect(0, 0, viewport.width, viewport.height);
             }
         };
     }, []);
