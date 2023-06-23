@@ -112,8 +112,8 @@ export const CanvasLayer: React.FC<{
 
         return () => {
             if (canvasEle) {
-                canvasEle.width = 0;
-                canvasEle.height = 0;
+                // canvasEle.width = 0;
+                // canvasEle.height = 0;
                 console.log('memory cleared')
                 canvasContext.clearRect(0, 0, viewport.width, viewport.height);
             }

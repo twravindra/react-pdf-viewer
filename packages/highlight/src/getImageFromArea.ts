@@ -24,6 +24,6 @@ export const getImageFromArea = () => {
         newCanvas.height = height;
 
         context?.drawImage(canvasEle, left * dpr, top * dpr, width * dpr, height * dpr, 0, 0, width, height);
-        return newCanvas.toDataURL('image/png', 0.5);
+        return newCanvas.toDataURL('image/png');
     };
 };
